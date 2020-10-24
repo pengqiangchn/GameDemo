@@ -8,24 +8,17 @@ namespace GameMain.Stores.Armors
 {
     public class WarriorArmorStore : ArmorStore
     {
-        public override Armor CreatArmor(int flag)
+        public WarriorArmorStore()
         {
-            switch (flag)
+            ArmorList = new List<Armor>()
             {
-                case 1: return new WarriorArmor1();
-                case 2: return new WarriorArmor2();
-                case 3: return new WarriorArmor3();
-                case 4: return new WarriorArmor4();
-            }
-            return null;
-        }
-
-        public override void Show()
-        {
-            Console.WriteLine($"1.白银铠甲 300金币 +30防御力");
-            Console.WriteLine($"2.黄金铠甲 600金币 +60防御力");
-            Console.WriteLine($"3.白金铠甲 1200金币 +100防御力");
-            Console.WriteLine($"4.钻石铠甲 2000金币 +200防御力");
+                new WarriorArmor(Enums.QeuipRankEnum.Rank1,"铠甲",300, 30),
+                new WarriorArmor(Enums.QeuipRankEnum.Rank2,"铠甲",600, 60),
+                new WarriorArmor(Enums.QeuipRankEnum.Rank3,"铠甲",1200, 120),
+                new WarriorArmor(Enums.QeuipRankEnum.Rank4,"铠甲",2000, 200),
+                new WarriorArmor(Enums.QeuipRankEnum.Rank5,"铠甲",4000, 400),
+                new WarriorArmor(Enums.QeuipRankEnum.Rank6,"铠甲",7000, 700),
+            };
         }
     }
 }

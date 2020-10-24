@@ -8,24 +8,17 @@ namespace GameMain.Stores.Armors
 {
     public class WizardArmorStore : ArmorStore
     {
-        public override Armor CreatArmor(int flag)
+        public WizardArmorStore()
         {
-            switch (flag)
+            ArmorList = new List<Armor>()
             {
-                case 1: return new WizardArmor1();
-                case 2: return new WizardArmor2();
-                case 3: return new WizardArmor3();
-                case 4: return new WizardArmor4();
-            }
-            return null;
-        }
-
-        public override void Show()
-        {
-            Console.WriteLine($"1.白银面纱 400金币 +40防御力");
-            Console.WriteLine($"2.黄金面纱 800金币 +80防御力");
-            Console.WriteLine($"3.白金面纱 1500金币 +160防御力");
-            Console.WriteLine($"4.钻石面纱 2500金币 +250防御力");
+                new WizardArmor(Enums.QeuipRankEnum.Rank1,"面纱",400, 40),
+                new WizardArmor(Enums.QeuipRankEnum.Rank2,"面纱",800, 80),
+                new WizardArmor(Enums.QeuipRankEnum.Rank3,"面纱",1500, 150),
+                new WizardArmor(Enums.QeuipRankEnum.Rank4,"面纱",2500, 250),
+                new WizardArmor(Enums.QeuipRankEnum.Rank5,"面纱",4500, 450),
+                new WizardArmor(Enums.QeuipRankEnum.Rank6,"面纱",6500, 600),
+            };
         }
     }
 }

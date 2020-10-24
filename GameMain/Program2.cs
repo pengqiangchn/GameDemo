@@ -53,8 +53,8 @@ namespace G1
                 }
             }
             player1 = characterFactory.CreatCharacter(flag);
-            player1weaponStore = storeManager.CreatWeaponStore(player1.GetName());
-            player1armorStore = storeManager.CreatArmorStore(player1.GetName());
+            player1weaponStore = storeManager.CreatWeaponStore(player1.Name);
+            player1armorStore = storeManager.CreatArmorStore(player1.Name);
 
 
             //玩家二创建角色 
@@ -70,8 +70,8 @@ namespace G1
                 else break;
             }
             player2 = characterFactory.CreatCharacter(flag);
-            player2weaponStore = storeManager.CreatWeaponStore(player2.GetName());
-            player2armorStore = storeManager.CreatArmorStore(player2.GetName());
+            player2weaponStore = storeManager.CreatWeaponStore(player2.Name);
+            player2armorStore = storeManager.CreatArmorStore(player2.Name);
 
             //无限循环，直到有一方生命值下降为0  
             while (true)
@@ -105,7 +105,7 @@ namespace G1
                     switch (flag)
                     {
                         case 1: //攻击  
-                            player2.TakeAttack(player1.GetATK());
+                            player2.TakeAttack(player1.ATK);
                             break;
                         case 2: //买武器   
                             player1weaponStore.Show();
@@ -128,7 +128,7 @@ namespace G1
                                 else
                                 {
                                     Weapon tempWeapon = player1weaponStore.CreatWeapon(flag);
-                                    if (player1.GetMoney() < tempWeapon.GetPrice() - player1.GetWeapon().GetPrice())
+                                    if (player1.Money < tempWeapon.Price - player1.Weapon.Price)
                                     {
                                         Console.WriteLine($"你的金币不够，请重新选择或输入0返回上一级");
                                     }
@@ -158,7 +158,7 @@ namespace G1
                                 else
                                 {
                                     Armor tempArmor = player1armorStore.CreatArmor(flag);
-                                    if (player1.GetMoney() < tempArmor.GetPrice() - player1.GetArmor().GetPrice())
+                                    if (player1.Money < tempArmor.Price - player1.Armor.Price)
                                     {
                                         Console.WriteLine($"你的金币不够，请重新选择或输入0返回上一级");
                                     }
@@ -191,7 +191,7 @@ namespace G1
                     }
                     if (flag != 0) break;
                 }  //判断输赢  
-                if (player2.GetHealth() <= 0)
+                if (player2.Health <= 0)
                 {
                     Console.WriteLine($"玩家二生命值下降为0，玩家一胜利");
                     break;
@@ -222,7 +222,7 @@ namespace G1
                     switch (flag)
                     {
                         case 1: //攻击  
-                            player1.TakeAttack(player2.GetATK());
+                            player1.TakeAttack(player2.ATK);
                             break;
                         case 2: //买武器   
                             player2weaponStore.Show();
@@ -245,7 +245,7 @@ namespace G1
                                 else
                                 {
                                     Weapon tempWeapon = player2weaponStore.CreatWeapon(flag);
-                                    if (player2.GetMoney() < tempWeapon.GetPrice() - player2.GetWeapon().GetPrice())
+                                    if (player2.Money < tempWeapon.Price - player2.Weapon.Price)
                                     {
                                         Console.WriteLine($"你的金币不够，请重新选择或输入0返回上一级");
                                     }
@@ -275,7 +275,7 @@ namespace G1
                                 else
                                 {
                                     Armor tempArmor = player2armorStore.CreatArmor(flag);
-                                    if (player2.GetMoney() < tempArmor.GetPrice() - player2.GetArmor().GetPrice())
+                                    if (player2.Money < tempArmor.Price - player2.Armor.Price)
                                     {
                                         Console.WriteLine($"你的金币不够，请重新选择或输入0返回上一级");
                                     }
@@ -308,7 +308,7 @@ namespace G1
                     }
                     if (flag != 0) break;
                 }  //判断输赢  
-                if (player1.GetHealth() <= 0)
+                if (player1.Health <= 0)
                 {
                     Console.WriteLine($"玩家一生命值下降为0，玩家二胜利");
                     break;

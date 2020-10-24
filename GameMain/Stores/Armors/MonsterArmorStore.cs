@@ -8,24 +8,17 @@ namespace GameMain.Stores.Armors
 {
     public class MonsterArmorStore : ArmorStore
     {
-        public override Armor CreatArmor(int flag)
+        public MonsterArmorStore()
         {
-            switch (flag)
+            ArmorList = new List<Armor>()
             {
-                case 1: return new MonsterArmor1();
-                case 2: return new MonsterArmor2();
-                case 3: return new MonsterArmor3();
-                case 4: return new MonsterArmor4();
-            }
-            return null;
-        }
-
-        public override void Show()
-        {
-            Console.WriteLine($"1.白银鳞甲 350金币 +35防御力");
-            Console.WriteLine($"2.黄金鳞甲 700金币 +70防御力");
-            Console.WriteLine($"3.白金鳞甲 1350金币 +130防御力");
-            Console.WriteLine($"4.钻石鳞甲 2300金币 +220防御力");
+                new MonsterArmor(Enums.QeuipRankEnum.Rank1,"鳞甲",350, 35),
+                new MonsterArmor(Enums.QeuipRankEnum.Rank2,"鳞甲",700, 70),
+                new MonsterArmor(Enums.QeuipRankEnum.Rank3,"鳞甲",1350, 130),
+                new MonsterArmor(Enums.QeuipRankEnum.Rank4,"鳞甲",2300, 220),
+                new MonsterArmor(Enums.QeuipRankEnum.Rank5,"鳞甲",4500, 450),
+                new MonsterArmor(Enums.QeuipRankEnum.Rank6,"鳞甲",6000, 600),
+            };
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GameMain.Base;
+using GameMain.Base.Weapons;
 using GameMain.Qeuip.Weapons;
 using System;
 using System.Collections.Generic;
@@ -8,24 +9,17 @@ namespace GameMain.Stores.Weapons
 {
     public class WizardWeaponStore : WeaponStore
     {
-        public override Weapon CreatWeapon(int flag)
+        public WizardWeaponStore()
         {
-            switch (flag)
+            WeaponList = new List<Weapon>()
             {
-                case 1: return new WizardWeapon1();
-                case 2: return new WizardWeapon2();
-                case 3: return new WizardWeapon3();
-                case 4: return new WizardWeapon4();
-            }
-            return null;
-        }
-
-        public override void Show()
-        {
-            Console.WriteLine($"1.白银法杖 400金币 +50攻击力");
-            Console.WriteLine($"2.黄金法杖 800金币 +100攻击力");
-            Console.WriteLine($"3.白金法杖 1500金币 +180攻击力");
-            Console.WriteLine($"4.钻石法杖 2500金币 +300攻击力");
+                new WizardWeapon(Enums.QeuipRankEnum.Rank1,"法杖",400, 50),
+                new WizardWeapon(Enums.QeuipRankEnum.Rank2,"法杖",800, 100),
+                new WizardWeapon(Enums.QeuipRankEnum.Rank3,"法杖",1500, 180),
+                new WizardWeapon(Enums.QeuipRankEnum.Rank4,"法杖",2500, 300),
+                new WizardWeapon(Enums.QeuipRankEnum.Rank5,"法杖",4000, 500),
+                new WizardWeapon(Enums.QeuipRankEnum.Rank6,"法杖",8000, 800),
+            };
         }
     }
 }

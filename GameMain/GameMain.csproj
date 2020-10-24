@@ -46,9 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\Armor.cs" />
+    <Compile Include="Base\Qeuip.cs" />
+    <Compile Include="Base\Store.cs" />
+    <Compile Include="Qeuip\Armors\Armor.cs" />
+    <Compile Include="Enums\QeuipRankEnum.cs" />
     <Compile Include="Program2.cs" />
-    <Compile Include="Stores\ArmorStore.cs" />
+    <Compile Include="Stores\Armors\ArmorStore.cs" />
     <Compile Include="Base\Character.cs" />
     <Compile Include="CharacterFactory.cs" />
     <Compile Include="Enums\GameSatausEnum.cs" />
@@ -74,8 +77,8 @@
     <Compile Include="Stores\Armors\WarriorArmorStore.cs" />
     <Compile Include="Qeuip\Weapons\WarriorWeapon.cs" />
     <Compile Include="Stores\Weapons\WarriorWeaponStore.cs" />
-    <Compile Include="Base\Weapon.cs" />
-    <Compile Include="Stores\WeaponStore.cs" />
+    <Compile Include="Qeuip\Weapons\Weapon.cs" />
+    <Compile Include="Stores\Weapons\WeaponStore.cs" />
     <Compile Include="Characters\Wizard.cs" />
     <Compile Include="Qeuip\Armors\WizardArmor.cs" />
     <Compile Include="Stores\Armors\WizardArmorStore.cs" />

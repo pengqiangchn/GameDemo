@@ -1,4 +1,5 @@
 ﻿using GameMain.Base;
+using GameMain.Base.Weapons;
 using GameMain.Qeuip.Weapons;
 using System;
 using System.Collections.Generic;
@@ -8,24 +9,17 @@ namespace GameMain.Stores.Weapons
 {
     public class MonsterWeaponStore : WeaponStore
     {
-        public override Weapon CreatWeapon(int flag)
+        public MonsterWeaponStore()
         {
-            switch (flag)
+            WeaponList = new List<Weapon>()
             {
-                case 1: return new MonsterWeapon1();
-                case 2: return new MonsterWeapon2();
-                case 3: return new MonsterWeapon3();
-                case 4: return new MonsterWeapon4();
-            }
-            return null;
-        }
-
-        public override void Show()
-        {
-            Console.WriteLine($"1.白银灵刃 450金币 +60攻击力");
-            Console.WriteLine($"2.黄金灵刃 900金币 +120攻击力");
-            Console.WriteLine($"3.白金灵刃 1650金币 +200攻击力");
-            Console.WriteLine($"4.钻石灵刃 2750金币 +320攻击力");
+                new MonsterWeapon(Enums.QeuipRankEnum.Rank1,"灵刃",450, 60),
+                new MonsterWeapon(Enums.QeuipRankEnum.Rank2,"灵刃",900, 120),
+                new MonsterWeapon(Enums.QeuipRankEnum.Rank3,"灵刃",1650, 200),
+                new MonsterWeapon(Enums.QeuipRankEnum.Rank4,"灵刃",2750, 320),
+                new MonsterWeapon(Enums.QeuipRankEnum.Rank5,"灵刃",4000, 400),
+                new MonsterWeapon(Enums.QeuipRankEnum.Rank6,"灵刃",6000, 600),
+            };
         }
     }
 }
