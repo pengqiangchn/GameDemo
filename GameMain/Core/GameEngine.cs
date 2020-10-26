@@ -69,19 +69,12 @@ namespace GameMain
             while (GAME_PROCESS == 1)
             {
                 CharacterFactory characterFactory = new CharacterFactory(); //角色产生工厂  
-                Character player1; //玩家一角色 
-                Character player2; //玩家二角色
                 StoreManager storeManager = new StoreManager(); //商店产生工厂（决定产生哪种职业的武器和盔甲） 
-                WeaponStore weaponStore; //武器商店
-                ArmorStore armorStore; //玩家一盔甲商店  
-                Weapon player1Weapon; //玩家一武器 
-                Weapon player2Weapon; //玩家二武器  
-                Armor player1Armor; //玩家一盔甲  
-                Armor player2Armor; //玩家二盔甲
-                var rand = new Random();
+                Character player; //玩家一角色 
+
                 int money; //每回合随机生成金币 
-                           //srand((unsigned)time(NULL));
-                money = rand.Next(100) + 200; //每回合生成200到300的金币
+                var random = new Random();
+                money = new Random().Next(100) + 200; //每回合生成200到300的金币
 
                 int flag = 0, count = 0; //用于switch的flag和记录回合数的count 
                 string readLine = "";
@@ -103,15 +96,18 @@ namespace GameMain
                 //如果没有暂停就 一直运行
                 while (GAME_STATUS == GameSatausEnum.Start)
                 {
-                    SendMsg("游戏开始");
-                    CallMsg("玩家一请选择职业：\n1.战士\t2.法师\t3.妖怪");
-                    player1 = characterFactory.CreatCharacter(GAME_USER_COMMAND);
-                    player1.ArmorStore = storeManager.CreatArmorStore(player1.Name);
+                    ShowMsg("游戏开始");
+                    SendMsg("玩家一请选择职业：\n1.战士\t2.法师\t3.妖怪");
+                    player = characterFactory.CreatCharacter(GAME_USER_COMMAND);
+                    player.ArmorStore = storeManager.CreatArmorStore(player);
+                    player.WeaponStore = storeManager.CreatWeaponStore(player);
 
-                    //UserCommand();
+                    //开始游戏，选择需要干啥
+                    while (true)
+                    {
+                        Home();
+                    }
 
-                    _model.Msg = "选好了";
-                    _progress(_model);
 
                 }
 
@@ -123,12 +119,37 @@ namespace GameMain
             }
         }
 
-        private void CallMsg(string msg)
+        //private void GameRunning()
+        //{
+        //    Home();
+        //}
+
+        private void Home()
         {
-            SendMsg(msg, true);
+            Console.WriteLine($"*************");
+            Console.WriteLine($"***欢迎归来***");
+            Console.WriteLine($"*************");
+
+            SendMsg($"请选择操作：\n1.冒险\n2.商店\n");
+
+            switch (GAME_USER_COMMAND)
+            {
+                case 1: //冒险
+                    break;
+                case 2: //商店
+                    break;
+
+                default:
+                    break;
+            }
         }
 
-        private void SendMsg(string msg, bool isCallback = false)
+        private void SendMsg(string msg)
+        {
+            ShowMsg(msg, true);
+        }
+
+        private void ShowMsg(string msg, bool isCallback = false)
         {
             _model.Msg = msg;
             _progress(_model);
