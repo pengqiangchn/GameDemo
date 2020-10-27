@@ -1,4 +1,5 @@
-﻿using GameMain.Base.Weapons;
+﻿using GameMain.Qeuips.Armors;
+using GameMain.Qeuips.Weapons;
 using GameMain.Stores.Armors;
 using GameMain.Stores.Weapons;
 using System;

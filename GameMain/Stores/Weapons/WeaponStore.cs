@@ -1,8 +1,6 @@
 ﻿using GameMain.Base;
-using GameMain.Base.Weapons;
-using System;
+using GameMain.Qeuips.Weapons;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GameMain.Stores.Weapons
 {
@@ -23,7 +21,7 @@ namespace GameMain.Stores.Weapons
             }
         }
 
-        public override void Show()
+        public override Weapon Show()
         {
             string msg = "";
             for (int i = 0; i < WeaponList.Count; i++)
@@ -33,7 +31,8 @@ namespace GameMain.Stores.Weapons
                 msg += $"{i + 1}. {armor.FullName} {armor.Price}金币 +{armor.DEF}攻击力\r\n";
             }
 
-            Console.WriteLine(msg);
+            int flag = getCommand(msg);
+            return Creat(flag);
         }
 
     }

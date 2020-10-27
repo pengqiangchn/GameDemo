@@ -1,6 +1,4 @@
-﻿using GameMain.Base;
-using GameMain.Base.Weapons;
-using GameMain.Qeuip.Weapons;
+﻿using GameMain.Qeuips.Weapons;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,8 +7,9 @@ namespace GameMain.Stores.Weapons
 {
     public class WizardWeaponStore : WeaponStore
     {
-        public WizardWeaponStore()
+        public WizardWeaponStore(Func<string, int> getcommand)
         {
+            GetCommand = getcommand;
             WeaponList = new List<Weapon>()
             {
                 new WizardWeapon(Enums.QeuipRankEnum.Rank1,"法杖",400, 50),

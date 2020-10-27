@@ -1,5 +1,4 @@
-﻿using GameMain.Base;
-using GameMain.Qeuip.Armors;
+﻿using GameMain.Qeuips.Armors;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,8 +7,9 @@ namespace GameMain.Stores.Armors
 {
     public class WarriorArmorStore : ArmorStore
     {
-        public WarriorArmorStore()
+        public WarriorArmorStore(Func<string, int> getcommand)
         {
+            GetCommand = getcommand;
             ArmorList = new List<Armor>()
             {
                 new WarriorArmor(Enums.QeuipRankEnum.Rank1,"铠甲",300, 30),

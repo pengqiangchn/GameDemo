@@ -1,5 +1,4 @@
 ﻿using GameMain.Base;
-using GameMain.Base.Weapons;
 using GameMain.Enums;
 using GameMain.Stores.Armors;
 using GameMain.Stores.Weapons;
@@ -22,7 +21,7 @@ namespace GameMain
         private Model _model = new Model();
 
         private readonly Thread gameProcess;
-        private Thread userCommand;
+        //private Thread userCommand;
 
         public delegate void Progress(Model model);
         private Progress _progress;
@@ -38,39 +37,15 @@ namespace GameMain
             gameProcess = new Thread(Game);
         }
 
-
-        private void UserCommand()
-        {
-            GAME_USER_COMMAND = 0;
-            userCommand = new Thread(GetCommand);
-            userCommand.Start();
-            userCommand.Join();
-        }
-
-        /// <summary>
-        /// 接收用户指令
-        /// </summary>
-        private void GetCommand()
-        {
-            while (GAME_USER_COMMAND == 0)
-            {
-            }
-        }
-
-        public void SetCommand(int userCommand)
-        {
-            GAME_USER_COMMAND = userCommand;
-            _model.Msg = userCommand.ToString();
-            _progress(_model);
-        }
+        Character player; //玩家一角色 
 
         private void Game()
         {
+            CharacterFactory characterFactory = new CharacterFactory(); //角色产生工厂  
+            StoreManager storeManager = new StoreManager(GetCommand); //商店产生工厂（决定产生哪种职业的武器和盔甲） 
+
             while (GAME_PROCESS == 1)
             {
-                CharacterFactory characterFactory = new CharacterFactory(); //角色产生工厂  
-                StoreManager storeManager = new StoreManager(); //商店产生工厂（决定产生哪种职业的武器和盔甲） 
-                Character player; //玩家一角色 
 
                 int money; //每回合随机生成金币 
                 var random = new Random();
@@ -88,19 +63,15 @@ namespace GameMain
                 if (GAME_SYSTEM_COMMAND == 1)
                 {
                     GAME_STATUS = GameSatausEnum.Start;
-
-
-
                 }
 
                 //如果没有暂停就 一直运行
                 while (GAME_STATUS == GameSatausEnum.Start)
                 {
                     ShowMsg("游戏开始");
-                    SendMsg("玩家一请选择职业：\n1.战士\t2.法师\t3.妖怪");
+                    GetCommand("请选择职业：\n1.战士\t2.法师\t3.妖怪");
                     player = characterFactory.CreatCharacter(GAME_USER_COMMAND);
-                    player.ArmorStore = storeManager.CreatArmorStore(player);
-                    player.WeaponStore = storeManager.CreatWeaponStore(player);
+                    storeManager.CreatStore(player);
 
                     //开始游戏，选择需要干啥
                     while (true)
@@ -119,18 +90,13 @@ namespace GameMain
             }
         }
 
-        //private void GameRunning()
-        //{
-        //    Home();
-        //}
-
         private void Home()
         {
-            Console.WriteLine($"*************");
-            Console.WriteLine($"***欢迎归来***");
-            Console.WriteLine($"*************");
-
-            SendMsg($"请选择操作：\n1.冒险\n2.商店\n");
+            string home = "*************\r\n" +
+                          "***欢迎归来***\r\n" +
+                          "*************\r\n";
+            ShowMsg(home);
+            GetCommand("请选择操作：\n1.冒险\n2.商店\n");
 
             switch (GAME_USER_COMMAND)
             {
@@ -144,17 +110,87 @@ namespace GameMain
             }
         }
 
-        private void SendMsg(string msg)
+        private void Shop()
         {
-            ShowMsg(msg, true);
+            Qeuip qeuip = null;
+            GetCommand("需购买的装备：\n1.武器\n2.盔甲\n");
+            switch (GAME_USER_COMMAND)
+            {
+                case 1: //武器
+                    qeuip = player.ArmorStore.Show();
+                    break;
+                case 2: //盔甲
+                    qeuip = player.WeaponStore.Show();
+                    break;
+                default:
+                    GAME_USER_COMMAND = 0;
+                    break;
+            }
+            if (qeuip != null)
+            {
+                if (player.Money < qeuip.Price - player.Weapon.Price)
+                {
+                    GetCommand("你的金币不够，请重新选择或输入0返回上一级");
+                }
+            }
+
         }
 
-        private void ShowMsg(string msg, bool isCallback = false)
+
+
+
+
+        private int GetCommand(string msg)
         {
+            return ShowMsg(msg, true);
+        }
+
+        private int ShowMsg(string msg, bool isCallback = false)
+        {
+            int command = 0;
+
             _model.Msg = msg;
             _progress(_model);
 
-            if (isCallback) UserCommand();
+            if (isCallback)
+            {
+                command = UserCommand();
+            }
+
+            return command;
+        }
+
+
+        private int UserCommand()
+        {
+            GAME_USER_COMMAND = 0;
+            Func<int> func = GetUserCommand;
+            int command = func.Invoke();
+            return command;
+            //func.BeginInvoke();
+            //func.EndInvoke();
+            //userCommand = new Thread(func);
+            //userCommand.Start();
+            //userCommand.Join();
+        }
+
+        /// <summary>
+        /// 接收用户指令
+        /// </summary>
+        private int GetUserCommand()
+        {
+            while (GAME_USER_COMMAND == 0)
+            {
+            }
+
+            return GAME_USER_COMMAND;
+        }
+
+        public void SetCommand(int userCommand)
+        {
+            GAME_USER_COMMAND = userCommand;
+            _model.Msg = userCommand.ToString();
+            _progress(_model);
         }
 
         public void StartGame()

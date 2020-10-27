@@ -1,4 +1,5 @@
 ﻿using GameMain.Base;
+using GameMain.Qeuips.Armors;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,7 +23,7 @@ namespace GameMain.Stores.Armors
             }
         }
 
-        public override void Show()
+        public override Armor Show()
         {
             string msg = "";
             for (int i = 0; i < ArmorList.Count; i++)
@@ -32,7 +33,8 @@ namespace GameMain.Stores.Armors
                 msg += $"{i + 1}. {armor.FullName} {armor.Price}金币 +{armor.DEF}防御力\r\n";
             }
 
-            Console.WriteLine(msg);
+            int flag = GetCommand(msg);
+            return Creat(flag);
         }
     }
 }

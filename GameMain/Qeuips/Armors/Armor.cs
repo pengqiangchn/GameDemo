@@ -1,9 +1,10 @@
-﻿using GameMain.Enums;
+﻿using GameMain.Base;
+using GameMain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameMain.Base
+namespace GameMain.Qeuips.Armors
 {
     /// <summary>
     /// 盔甲

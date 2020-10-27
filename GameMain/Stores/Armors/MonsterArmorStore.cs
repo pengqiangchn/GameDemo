@@ -1,5 +1,4 @@
-﻿using GameMain.Base;
-using GameMain.Qeuip.Armors;
+﻿using GameMain.Qeuips.Armors;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,8 +7,9 @@ namespace GameMain.Stores.Armors
 {
     public class MonsterArmorStore : ArmorStore
     {
-        public MonsterArmorStore()
+        public MonsterArmorStore(Func<string, int> getcommand)
         {
+            GetCommand = getcommand;
             ArmorList = new List<Armor>()
             {
                 new MonsterArmor(Enums.QeuipRankEnum.Rank1,"鳞甲",350, 35),

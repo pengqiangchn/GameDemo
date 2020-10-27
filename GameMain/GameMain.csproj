@@ -48,9 +48,9 @@
   <ItemGroup>
     <Compile Include="Base\Qeuip.cs" />
     <Compile Include="Base\Store.cs" />
-    <Compile Include="Qeuip\Armors\Armor.cs" />
+    <Compile Include="Core\Script\MainScript.cs" />
+    <Compile Include="Qeuips\Armors\Armor.cs" />
     <Compile Include="Enums\QeuipRankEnum.cs" />
-    <Compile Include="Program2.cs" />
     <Compile Include="Stores\Armors\ArmorStore.cs" />
     <Compile Include="Base\Character.cs" />
     <Compile Include="Core\CharacterFactory.cs" />
@@ -64,25 +64,25 @@
     </Compile>
     <Compile Include="Model.cs" />
     <Compile Include="Characters\Monster.cs" />
-    <Compile Include="Qeuip\Armors\MonsterArmor.cs" />
+    <Compile Include="Qeuips\Armors\MonsterArmor.cs" />
     <Compile Include="Stores\Armors\MonsterArmorStore.cs" />
-    <Compile Include="Qeuip\Weapons\MonsterWeapon.cs" />
+    <Compile Include="Qeuips\Weapons\MonsterWeapon.cs" />
     <Compile Include="Stores\Weapons\MonsterWeaponStore.cs" />
     <Compile Include="MyExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\StoreManager.cs" />
     <Compile Include="Characters\Warrior.cs" />
-    <Compile Include="Qeuip\Armors\WarriorArmor.cs" />
+    <Compile Include="Qeuips\Armors\WarriorArmor.cs" />
     <Compile Include="Stores\Armors\WarriorArmorStore.cs" />
-    <Compile Include="Qeuip\Weapons\WarriorWeapon.cs" />
+    <Compile Include="Qeuips\Weapons\WarriorWeapon.cs" />
     <Compile Include="Stores\Weapons\WarriorWeaponStore.cs" />
-    <Compile Include="Qeuip\Weapons\Weapon.cs" />
+    <Compile Include="Qeuips\Weapons\Weapon.cs" />
     <Compile Include="Stores\Weapons\WeaponStore.cs" />
     <Compile Include="Characters\Wizard.cs" />
-    <Compile Include="Qeuip\Armors\WizardArmor.cs" />
+    <Compile Include="Qeuips\Armors\WizardArmor.cs" />
     <Compile Include="Stores\Armors\WizardArmorStore.cs" />
-    <Compile Include="Qeuip\Weapons\WizardWeapon.cs" />
+    <Compile Include="Qeuips\Weapons\WizardWeapon.cs" />
     <Compile Include="Stores\Weapons\WizardWeaponStore.cs" />
     <EmbeddedResource Include="GameMain.resx">
       <DependentUpon>GameMain.cs</DependentUpon>

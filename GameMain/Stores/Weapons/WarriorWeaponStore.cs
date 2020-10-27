@@ -1,6 +1,5 @@
 ﻿using GameMain.Base;
-using GameMain.Base.Weapons;
-using GameMain.Qeuip.Weapons;
+using GameMain.Qeuips.Weapons;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,8 +8,10 @@ namespace GameMain.Stores.Weapons
 {
     public class WarriorWeaponStore : WeaponStore
     {
-        public WarriorWeaponStore()
+        public WarriorWeaponStore(Func<string, int> getcommand)
         {
+            GetCommand = getcommand;
+
             WeaponList = new List<Weapon>()
             {
                 new WarriorWeapon(Enums.QeuipRankEnum.Rank1,"巨剑",500, 70),

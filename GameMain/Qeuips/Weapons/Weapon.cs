@@ -1,9 +1,10 @@
-﻿using GameMain.Enums;
+﻿using GameMain.Base;
+using GameMain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameMain.Base.Weapons
+namespace GameMain.Qeuips.Weapons
 {
     public class Weapon : Qeuip
     {

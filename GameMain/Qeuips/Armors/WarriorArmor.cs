@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameMain.Qeuip.Armors
+namespace GameMain.Qeuips.Armors
 {
-    public class MonsterArmor : Armor
+    public class WarriorArmor : Armor
     {
-        public MonsterArmor(QeuipRankEnum rank, string name, int price = 0, int def = 0)
+        public WarriorArmor(QeuipRankEnum rank, string name, int price = 0, int def = 0)
             : base(rank, name, price, def)
         {
 

@@ -7,6 +7,8 @@ namespace GameMain.Base
 {
     public abstract class Store<T>
     {
+        public Func<string, int> GetCommand;
+
         /// <summary>
         /// 创建
         /// </summary>
@@ -17,7 +19,7 @@ namespace GameMain.Base
         /// <summary>
         /// 信息展示
         /// </summary>
-        public abstract void Show();
+        public abstract T Show();
 
     }
 }

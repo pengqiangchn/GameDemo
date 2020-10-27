@@ -11,40 +11,49 @@ namespace GameMain
 {
     public class StoreManager
     {
-        public WeaponStore CreatWeaponStore(Character character)
-        {
-            if (character is Warrior)
-            {
-                return new WarriorWeaponStore();
-            }
-            else if (character is Wizard)
-            {
-                return new WizardWeaponStore();
-            }
-            else if (character is Monster)
-            {
-                return new MonsterWeaponStore();
-            }
+        public Func<string, int> GetCommand;
 
-            return null;
+        public StoreManager(Func<string, int> getCommand)
+        {
+            GetCommand = getCommand;
         }
 
-        public ArmorStore CreatArmorStore(Character character)
+        public void CreatStore(Character character)
+        {
+            CreatWeaponStore(character);
+            CreatArmorStore(character);
+        }
+
+        public void CreatWeaponStore(Character character)
         {
             if (character is Warrior)
             {
-                return new WarriorArmorStore();
+                character.WeaponStore = new WarriorWeaponStore(GetCommand);
             }
             else if (character is Wizard)
             {
-                return new WizardArmorStore();
+                character.WeaponStore = new WarriorWeaponStore(GetCommand);
             }
             else if (character is Monster)
             {
-                return new MonsterArmorStore();
+                character.WeaponStore = new WarriorWeaponStore(GetCommand);
             }
+        }
 
-            return null;
+        public void CreatArmorStore(Character character)
+        {
+            if (character is Warrior)
+            {
+                character.ArmorStore = new WarriorArmorStore(GetCommand);
+            }
+            else if (character is Wizard)
+            {
+                character.ArmorStore = new WizardArmorStore(GetCommand);
+            }
+            else if (character is Monster)
+            {
+                character.ArmorStore = new MonsterArmorStore(GetCommand);
+            }
         }
     }
 }
