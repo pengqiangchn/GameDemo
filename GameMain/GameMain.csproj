@@ -62,11 +62,11 @@
     <Compile Include="Core\CharacterFactory.cs" />
     <Compile Include="Enums\GameSatausEnum.cs" />
     <Compile Include="Core\GameEngine.cs" />
-    <Compile Include="GameMain.cs">
+    <Compile Include="SimpleRPG.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GameMain.Designer.cs">
-      <DependentUpon>GameMain.cs</DependentUpon>
+    <Compile Include="SimpleRPG.Designer.cs">
+      <DependentUpon>SimpleRPG.cs</DependentUpon>
     </Compile>
     <Compile Include="Model.cs" />
     <Compile Include="Characters\Monster.cs" />
@@ -90,8 +90,8 @@
     <Compile Include="Stores\Armors\WizardArmorStore.cs" />
     <Compile Include="Equips\Weapons\WizardWeapon.cs" />
     <Compile Include="Stores\Weapons\WizardWeaponStore.cs" />
-    <EmbeddedResource Include="GameMain.resx">
-      <DependentUpon>GameMain.cs</DependentUpon>
+    <EmbeddedResource Include="SimpleRPG.resx">
+      <DependentUpon>SimpleRPG.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

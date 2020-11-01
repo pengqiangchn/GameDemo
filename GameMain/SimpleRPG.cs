@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace GameMain
 {
-    public partial class GameMain : Form
+    public partial class SimpleRPG : Form
     {
         public static object Lock = new object();
 
@@ -18,7 +18,7 @@ namespace GameMain
         delegate void UpdateUIDelegate(Model model);
         UpdateUIDelegate dUpdateUI;
 
-        public GameMain()
+        public SimpleRPG()
         {
             InitializeComponent();
         }
