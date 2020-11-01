@@ -12,7 +12,7 @@ namespace GameMain.Base
     /// <summary>
     /// 角色
     /// </summary>
-    public abstract class Character
+    public class Enemy
     {
         //public EventHandler
         public delegate void InfoChangedEventHandler(Model model);
@@ -80,7 +80,7 @@ namespace GameMain.Base
         //药（暂用治疗术代替药水） 
         //Medicine medicine;
 
-        public Character(int health = 2000, int atk = 0, int def = 0, int money = 500, string name = "无")
+        public Enemy(int health = 2000, int atk = 0, int def = 0, int money = 500, string name = "无")
         {
             Name = name;
             Money = money;
@@ -90,6 +90,47 @@ namespace GameMain.Base
             Weapon = new Weapon();
             Armor = new Armor();
         }
+
+        public void GetRole(Character character)
+        {
+            this.Fill(character);
+        }
+
+        //获得金钱，武器，装备  
+        public void GetMoney(int money)
+        {
+            Money += money;
+            Console.WriteLine($"获得了{money}金币");
+        }
+
+        public void GetEquip(Equip equip)
+        {
+            if (equip is Weapon)
+            {
+                GetWeapon(equip as Weapon);
+            }
+            else if (equip is Armor)
+            {
+                GetArmor(equip as Armor);
+            }
+        }
+
+        private void GetWeapon(Weapon weapon)
+        {
+            Money -= weapon.Price - Weapon.Price; //金币减少  
+            ATK += weapon.ATK - Weapon.ATK; //攻击力上升 
+            Weapon = weapon;
+        }
+
+        private void GetArmor(Armor armor)
+        {
+            Money -= armor.Price - Armor.Price; //金币减少 
+            DEF += armor.DEF - Armor.DEF; //防御力上升 
+            Armor = armor;
+        }
+
+        /*void GetMedicine(Medicine m)  {  Medicine=m;  Money-=m.Price;  }*/
+        //受到攻击 
 
         /// <summary>
         /// 受到攻击
@@ -103,35 +144,42 @@ namespace GameMain.Base
                 Health = 0;
         }
 
-        private void ShowInfo()
+        ////使用治疗术 
+        ///// <summary>
+        ///// 使用治疗术
+        ///// </summary>
+        //public void Treatment()
+        //{
+        //    if ((_health + 200) <= 2000)
+        //        _health += 200;
+        //    else _health = 2000;
+        //}
+
+        /*void TakeMedicine()  {  if((Health+medicine.value)<=2000)  Health+=medicine.value;  else  Health=2000;  }*/
+
+        //展示角色信息  
+        public void ShowInfo()
         {
             if (InfoChanged != null)
             {
-                Model model = GetModel();
-                //string r1 = Label("职业", Name);
+                string r1 = Label("职业", Name);
 
-                //string userInfo = Label("职业", Name) + Label("金币", Money) + "\r\n" +
-                //                  Label("生命值", Health) + "\r\n" +
-                //                  Label("武器", Weapon?.FullName) + Label("攻击力", ATK) +
-                //                  Label("盔甲", Armor?.FullName) + Label("防御力", DEF) + "\r\n";
+                string userInfo = Label("职业", Name) + Label("金币", Money) + "\r\n" +
+                                  Label("生命值", Health) + "\r\n" +
+                                  Label("武器", Weapon?.FullName) + Label("攻击力", ATK) +
+                                  Label("盔甲", Armor?.FullName) + Label("防御力", DEF) + "\r\n";
 
-                InfoChanged(model);
+                InfoChanged(new Model() { User = userInfo });
             }
         }
 
-        protected virtual Model GetModel()
-        {
-            return new Model();
-        }
-
-        protected string Label(string text, object value)
+        private string Label(string text, object value)
         {
             string valueStr = value?.ToString();
             string label = (text + ":").PadRight(8 - text.CNCharCount())
                            + valueStr.PadRight(12 - valueStr.CNCharCount());
             return label.PadRight(20 - label.CNCharCount());
         }
-
     };
 }
 

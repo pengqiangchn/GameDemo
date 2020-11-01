@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\IModel.cs" />
+    <Compile Include="Base\Player.cs" />
+    <Compile Include="Base\Enemy.cs" />
     <Compile Include="Base\Equip.cs" />
     <Compile Include="Base\Store.cs" />
     <Compile Include="Const.cs" />
@@ -53,6 +56,7 @@
     <Compile Include="Enums\CharacterRoleEnum.cs" />
     <Compile Include="Equips\Armors\Armor.cs" />
     <Compile Include="Enums\QeuipRankEnum.cs" />
+    <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Stores\Armors\ArmorStore.cs" />
     <Compile Include="Base\Character.cs" />
     <Compile Include="Core\CharacterFactory.cs" />
@@ -111,5 +115,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,6 @@
 ﻿using GameMain.Base;
 using GameMain.Enums;
+using GameMain.Helper;
 using GameMain.Qeuips.Weapons;
 using GameMain.Stores.Armors;
 using GameMain.Stores.Weapons;
@@ -19,27 +20,20 @@ namespace GameMain
         private int GAME_SYSTEM_COMMAND = 1;
         private int GAME_USER_COMMAND = CONST.EMPTY_COMMAND;
 
-        //private Model _model = null;
-
         private readonly Thread gameProcess;
-        //private Thread userCommand;
 
         public delegate void Progress(Model model);
         private Progress _progress;
 
-        //public delegate void Command(int x);
-        //private Command _command;
-
-        private Character _player;
+        private Player _player;
         private readonly CharacterFactory _characterFactory;
         private readonly StoreManager _storeManager;
 
         public GameEngine(Progress progress)
         {
             _progress = progress;
-            _player = new Character();
+            _player = new Player();
             _player.InfoChanged += new Character.InfoChangedEventHandler(progress);
-            _player.ShowInfo();
 
             _characterFactory = new CharacterFactory(GetCommand); //角色产生工厂  
             _storeManager = new StoreManager(GetCommand); //商店产生工厂（决定产生哪种职业的武器和盔甲） 
@@ -52,32 +46,26 @@ namespace GameMain
 
             while (GAME_PROCESS == 1)
             {
+                //int money; //每回合随机生成金币 
+                //var random = new Random();
+                //money = new Random().Next(100) + 200; //每回合生成200到300的金币
 
-                int money; //每回合随机生成金币 
-                var random = new Random();
-                money = new Random().Next(100) + 200; //每回合生成200到300的金币
-
-                int flag = 0, count = 0; //用于switch的flag和记录回合数的count 
-                string readLine = "";
-                const int treatCD = 4; //治疗术的CD，即四个回合 
-                int player1NextTreat = 1, player2NextTreat = 1; //玩家一和玩家二下次可以使用治疗术的回合
-
-                List<string> characterFlags = new List<string> { "1", "2", "3" };
-                List<string> actFlags = new List<string> { "1", "2", "3", "4" };
-                List<string> actMFlags = new List<string> { "0", "1", "2", "3", "4" };
+                //int flag = 0, count = 0; //用于switch的flag和记录回合数的count 
+                //string readLine = "";
+                //const int treatCD = 4; //治疗术的CD，即四个回合 
+                //int player1NextTreat = 1, player2NextTreat = 1; //玩家一和玩家二下次可以使用治疗术的回合
 
                 if (GAME_SYSTEM_COMMAND == 1)
                 {
                     GAME_STATUS = GameSatausEnum.Start;
-                    _player.Fill(new Character());
+                    _player.Fill(new Player());
                 }
 
                 //如果没有暂停就 一直运行
                 while (GAME_STATUS == GameSatausEnum.Start)
                 {
                     ShowMsg("游戏开始");
-                    _characterFactory.ChooseCharacter(_player);
-                    _storeManager.CreatStore(_player);
+                    LoadGame();
 
                     //开始游戏，选择需要干啥
                     while (true)
@@ -93,13 +81,50 @@ namespace GameMain
             }
         }
 
+        private void LoadGame()
+        {
+            GetCommand("请选择操作：\r\n1.新的游戏\r\n2.继续游戏");
+            switch (GAME_USER_COMMAND)
+            {
+                case 1:
+                    {
+                        _characterFactory.ChooseCharacter(_player);
+                        _storeManager.CreatStore(_player);
+                        break;
+                    }
+                case 2:
+                    {
+                        Read();
+                        break;
+                    }
+                default:
+                    {
+                        ShowMsg("选择错误，请重新选择！");
+                        LoadGame();
+                        break;
+                    }
+            }
+        }
+
+        private void Read()
+        {
+            string userJson = FileHelper.LoadData();
+
+            if (userJson.IsNotEmpty())
+            {
+            }
+            else
+            {
+            }
+        }
+
         private void Home()
         {
             string home = "*************\r\n" +
                           "***欢迎归来***\r\n" +
                           "*************\r\n";
             ShowMsg(home);
-            GetCommand("请选择操作：\r\n1.冒险\r\n2.商店");
+            GetCommand("请选择操作：\r\n1.冒险\r\n2.商店\r\n9.保存游戏");
 
             switch (GAME_USER_COMMAND)
             {
@@ -108,10 +133,17 @@ namespace GameMain
                 case 2: //商店
                     Shop();
                     break;
+                case 99:
+                    break;
 
                 default:
                     break;
             }
+        }
+
+        private void Explore()
+        {
+
         }
 
         private void Shop()
@@ -184,18 +216,12 @@ namespace GameMain
             return command;
         }
 
-
         private int UserCommand()
         {
             GAME_USER_COMMAND = CONST.EMPTY_COMMAND;
             Func<int> func = GetUserCommand;
             int command = func.Invoke();
             return command;
-            //func.BeginInvoke();
-            //func.EndInvoke();
-            //userCommand = new Thread(func);
-            //userCommand.Start();
-            //userCommand.Join();
         }
 
         /// <summary>

@@ -15,7 +15,7 @@ namespace GameMain
             GetCommand = getCommand;
         }
 
-        public void ChooseCharacter(Character character)
+        public void ChooseCharacter(Player character)
         {
             int flag = GetCommand("请选择职业：\n1.战士\t2.法师\t3.妖怪");
             character.GetRole(ChooseCharacter(flag));
