@@ -1,4 +1,5 @@
-﻿using GameMain.Qeuips.Armors;
+﻿using GameMain.Enums;
+using GameMain.Qeuips.Armors;
 using GameMain.Qeuips.Weapons;
 using GameMain.Stores.Armors;
 using GameMain.Stores.Weapons;
@@ -13,41 +14,49 @@ namespace GameMain.Base
     /// </summary>
     public class Character
     {
+        //public EventHandler
+        public delegate void InfoChangedEventHandler(Model model);
+        public event InfoChangedEventHandler InfoChanged;
+
         protected string _name;
         /// <summary>
         /// 职业名称
         /// </summary>
-        public string Name { get { return _name; } }
+        public string Name { get { return _name; } set { _name = value; ShowInfo(); } }
+
+        protected CharacterRoleEnum _role;
+        public CharacterRoleEnum Role { get { return _role; } set { _role = value; ShowInfo(); } }
+        public string RoleName { get { return _role.ToDescription(); } }
 
         protected int _health;
         /// <summary>
         /// 生命值
         /// </summary>
-        public int Health { get { return _health; } }
+        public int Health { get { return _health; } set { _health = value; ShowInfo(); } }
 
         protected int _atk;
         /// <summary>
         /// 攻击力
         /// </summary>
-        public int ATK { get { return _atk; } }
+        public int ATK { get { return _atk; } set { _atk = value; ShowInfo(); } }
 
         protected int _def;
         /// <summary>
         /// 防御力
         /// </summary>
-        public int DEF { get { return _def; } }
+        public int DEF { get { return _def; } set { _def = value; ShowInfo(); } }
 
         protected int _money;
         /// <summary>
         /// 钱
         /// </summary>
-        public int Money { get { return _money; } }
+        public int Money { get { return _money; } set { _money = value; ShowInfo(); } }
 
         protected Weapon _weapon;
         /// <summary>
         /// 武器
         /// </summary>
-        public Weapon Weapon { get { return _weapon; } }
+        public Weapon Weapon { get { return _weapon; } set { _weapon = value; ShowInfo(); } }
 
         //protected WeaponStore _weaponStore;
         /// <summary>
@@ -60,7 +69,7 @@ namespace GameMain.Base
         /// <summary>
         /// 盔甲
         /// </summary>
-        public Armor Armor { get { return _armor; } }
+        public Armor Armor { get { return _armor; } set { _armor = value; ShowInfo(); } }
 
         //protected ArmorStore _armorStore;
         /// <summary>
@@ -71,36 +80,53 @@ namespace GameMain.Base
         //药（暂用治疗术代替药水） 
         //Medicine medicine;
 
-        public Character(int health = 2000, int atk = 0, int def = 0, int money = 500, string name = "")
+        public Character(int health = 2000, int atk = 0, int def = 0, int money = 500, string name = "无")
         {
-            _health = health;
-            _atk = atk;
-            _def = def;
-            _money = money;
-            _name = name;
-            _weapon = new Weapon();
-            _armor = new Armor();
+            Name = name;
+            Money = money;
+            Health = health;
+            ATK = atk;
+            DEF = def;
+            Weapon = new Weapon();
+            Armor = new Armor();
+        }
+
+        public void GetRole(Character character)
+        {
+            this.Fill(character);
         }
 
         //获得金钱，武器，装备  
         public void GetMoney(int money)
         {
-            _money += money;
+            Money += money;
             Console.WriteLine($"获得了{money}金币");
         }
 
-        public void GetWeapon(Weapon weapon)
+        public void GetEquip(Equip equip)
         {
-            _money -= weapon.Price - Weapon.Price; //金币减少  
-            _atk += weapon.ATK - Weapon.ATK; //攻击力上升 
-            _weapon = weapon;
+            if (equip is Weapon)
+            {
+                GetWeapon(equip as Weapon);
+            }
+            else if (equip is Armor)
+            {
+                GetArmor(equip as Armor);
+            }
         }
 
-        public void GetArmor(Armor armor)
+        private void GetWeapon(Weapon weapon)
         {
-            _money -= armor.Price - Armor.Price; //金币减少 
-            _def += armor.DEF - Armor.DEF; //防御力上升 
-            _armor = armor;
+            Money -= weapon.Price - Weapon.Price; //金币减少  
+            ATK += weapon.ATK - Weapon.ATK; //攻击力上升 
+            Weapon = weapon;
+        }
+
+        private void GetArmor(Armor armor)
+        {
+            Money -= armor.Price - Armor.Price; //金币减少 
+            DEF += armor.DEF - Armor.DEF; //防御力上升 
+            Armor = armor;
         }
 
         /*void GetMedicine(Medicine m)  {  Medicine=m;  Money-=m.Price;  }*/
@@ -113,9 +139,9 @@ namespace GameMain.Base
         public void TakeAttack(int atk)
         {
             if (atk > DEF)
-                _health = _health - atk + DEF;
-            if (_health < 0)
-                _health = 0;
+                Health = _health - atk + DEF;
+            if (Health < 0)
+                Health = 0;
         }
 
         ////使用治疗术 
@@ -132,13 +158,27 @@ namespace GameMain.Base
         /*void TakeMedicine()  {  if((Health+medicine.value)<=2000)  Health+=medicine.value;  else  Health=2000;  }*/
 
         //展示角色信息  
-        public void Show()
+        public void ShowInfo()
         {
-            //Console.WriteLine($"职业{Name}");
-            //Console.WriteLine($"生命值{Health}");
-            //Console.WriteLine($"武器{weapon.GetRank()}{weapon.Name }\t攻击力:{ATK}");
-            //Console.WriteLine($"盔甲{armor.GetRank() }{armor.Name}\t防御力:{DEF}");
-            //Console.WriteLine($"金币{Money}");
+            if (InfoChanged != null)
+            {
+                string r1 = Label("职业", Name);
+
+                string userInfo = Label("职业", Name) + Label("金币", Money) + "\r\n" +
+                                  Label("生命值", Health) + "\r\n" +
+                                  Label("武器", Weapon?.FullName) + Label("攻击力", ATK) +
+                                  Label("盔甲", Armor?.FullName) + Label("防御力", DEF) + "\r\n";
+
+                InfoChanged(new Model() { User = userInfo });
+            }
+        }
+
+        private string Label(string text, object value)
+        {
+            string valueStr = value?.ToString();
+            string label = (text + ":").PadRight(8 - text.CNCharCount())
+                           + valueStr.PadRight(12 - valueStr.CNCharCount());
+            return label.PadRight(20 - label.CNCharCount());
         }
     };
 }

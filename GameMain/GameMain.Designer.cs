@@ -16,52 +16,68 @@
         private void InitializeComponent()
         {
             this.gbUserInfo = new System.Windows.Forms.GroupBox();
+            this.txtUser = new System.Windows.Forms.RichTextBox();
             this.gbGameInfo = new System.Windows.Forms.GroupBox();
-            this.txtGameInfo = new System.Windows.Forms.RichTextBox();
+            this.txtGame = new System.Windows.Forms.RichTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnReGame = new System.Windows.Forms.LinkLabel();
             this.btnClean = new System.Windows.Forms.LinkLabel();
             this.btnOk = new System.Windows.Forms.Button();
             this.txtCommand = new System.Windows.Forms.TextBox();
-            this.txtUserInfo = new System.Windows.Forms.RichTextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtPet = new System.Windows.Forms.RichTextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtFightUser = new System.Windows.Forms.RichTextBox();
+            this.txtFightEnemy = new System.Windows.Forms.RichTextBox();
             this.gbUserInfo.SuspendLayout();
             this.gbGameInfo.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbUserInfo
             // 
-            this.gbUserInfo.Controls.Add(this.txtUserInfo);
-            this.gbUserInfo.Location = new System.Drawing.Point(660, 8);
+            this.gbUserInfo.Controls.Add(this.txtUser);
+            this.gbUserInfo.Location = new System.Drawing.Point(12, 11);
             this.gbUserInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbUserInfo.Name = "gbUserInfo";
             this.gbUserInfo.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbUserInfo.Size = new System.Drawing.Size(206, 261);
+            this.gbUserInfo.Size = new System.Drawing.Size(593, 126);
             this.gbUserInfo.TabIndex = 0;
             this.gbUserInfo.TabStop = false;
             this.gbUserInfo.Text = "角色信息";
             // 
+            // txtUser
+            // 
+            this.txtUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtUser.Location = new System.Drawing.Point(3, 16);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.Size = new System.Drawing.Size(587, 108);
+            this.txtUser.TabIndex = 2;
+            this.txtUser.Text = "";
+            // 
             // gbGameInfo
             // 
-            this.gbGameInfo.Controls.Add(this.txtGameInfo);
-            this.gbGameInfo.Location = new System.Drawing.Point(10, 8);
+            this.gbGameInfo.Controls.Add(this.txtGame);
+            this.gbGameInfo.Location = new System.Drawing.Point(12, 141);
             this.gbGameInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbGameInfo.Name = "gbGameInfo";
             this.gbGameInfo.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbGameInfo.Size = new System.Drawing.Size(645, 263);
+            this.gbGameInfo.Size = new System.Drawing.Size(593, 263);
             this.gbGameInfo.TabIndex = 0;
             this.gbGameInfo.TabStop = false;
             this.gbGameInfo.Text = "游戏信息";
             // 
-            // txtGameInfo
+            // txtGame
             // 
-            this.txtGameInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtGameInfo.Location = new System.Drawing.Point(3, 16);
-            this.txtGameInfo.Name = "txtGameInfo";
-            this.txtGameInfo.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.txtGameInfo.Size = new System.Drawing.Size(639, 245);
-            this.txtGameInfo.TabIndex = 1;
-            this.txtGameInfo.Text = "";
+            this.txtGame.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtGame.Location = new System.Drawing.Point(3, 16);
+            this.txtGame.Name = "txtGame";
+            this.txtGame.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.txtGame.Size = new System.Drawing.Size(587, 245);
+            this.txtGame.TabIndex = 1;
+            this.txtGame.Text = "";
             // 
             // groupBox1
             // 
@@ -69,7 +85,7 @@
             this.groupBox1.Controls.Add(this.btnClean);
             this.groupBox1.Controls.Add(this.btnOk);
             this.groupBox1.Controls.Add(this.txtCommand);
-            this.groupBox1.Location = new System.Drawing.Point(10, 276);
+            this.groupBox1.Location = new System.Drawing.Point(12, 409);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -119,20 +135,65 @@
             this.txtCommand.TabIndex = 0;
             this.txtCommand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCommand_KeyDown);
             // 
-            // txtUserInfo
+            // groupBox2
             // 
-            this.txtUserInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUserInfo.Location = new System.Drawing.Point(3, 16);
-            this.txtUserInfo.Name = "txtUserInfo";
-            this.txtUserInfo.Size = new System.Drawing.Size(200, 243);
-            this.txtUserInfo.TabIndex = 2;
-            this.txtUserInfo.Text = "";
+            this.groupBox2.Controls.Add(this.txtPet);
+            this.groupBox2.Location = new System.Drawing.Point(611, 11);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Size = new System.Drawing.Size(292, 126);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "宠物信息";
+            // 
+            // txtPet
+            // 
+            this.txtPet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPet.Location = new System.Drawing.Point(3, 16);
+            this.txtPet.Name = "txtPet";
+            this.txtPet.Size = new System.Drawing.Size(286, 108);
+            this.txtPet.TabIndex = 2;
+            this.txtPet.Text = "";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.txtFightEnemy);
+            this.groupBox3.Controls.Add(this.txtFightUser);
+            this.groupBox3.Location = new System.Drawing.Point(614, 141);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Size = new System.Drawing.Size(289, 264);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "对战信息";
+            // 
+            // txtFightUser
+            // 
+            this.txtFightUser.Dock = System.Windows.Forms.DockStyle.Left;
+            this.txtFightUser.Location = new System.Drawing.Point(3, 16);
+            this.txtFightUser.Name = "txtFightUser";
+            this.txtFightUser.Size = new System.Drawing.Size(140, 246);
+            this.txtFightUser.TabIndex = 2;
+            this.txtFightUser.Text = "";
+            // 
+            // txtFightEnemy
+            // 
+            this.txtFightEnemy.Dock = System.Windows.Forms.DockStyle.Right;
+            this.txtFightEnemy.Location = new System.Drawing.Point(146, 16);
+            this.txtFightEnemy.Name = "txtFightEnemy";
+            this.txtFightEnemy.Size = new System.Drawing.Size(140, 246);
+            this.txtFightEnemy.TabIndex = 3;
+            this.txtFightEnemy.Text = "";
             // 
             // GameMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(876, 350);
+            this.ClientSize = new System.Drawing.Size(915, 513);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbGameInfo);
             this.Controls.Add(this.gbUserInfo);
@@ -148,6 +209,8 @@
             this.gbGameInfo.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -166,8 +229,13 @@
         private System.Windows.Forms.TextBox txtCommand;
         private System.Windows.Forms.LinkLabel btnClean;
         private System.Windows.Forms.LinkLabel btnReGame;
-        private System.Windows.Forms.RichTextBox txtGameInfo;
-        private System.Windows.Forms.RichTextBox txtUserInfo;
+        private System.Windows.Forms.RichTextBox txtGame;
+        private System.Windows.Forms.RichTextBox txtUser;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RichTextBox txtPet;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RichTextBox txtFightUser;
+        private System.Windows.Forms.RichTextBox txtFightEnemy;
     }
 }
 

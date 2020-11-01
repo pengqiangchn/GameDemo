@@ -4,25 +4,23 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameMain.Qeuips.Armors
+namespace GameMain.Qeuips.Weapons
 {
-    /// <summary>
-    /// 盔甲
-    /// </summary>
-    public class Armor : Qeuip
+    public class Weapon : Equip
     {
-        public Armor()
+        public Weapon()
         {
             _rank = QeuipRankEnum.None;
             _name = "无";
         }
 
-        public Armor(QeuipRankEnum rank, string name, int price, int def)
+        public Weapon(QeuipRankEnum rank, string name, int price, int atk)
         {
             _rank = rank;
             _name = name;
             _price = price;
-            _def = def;
+            _atk = atk;
         }
-    }
+
+    };
 }

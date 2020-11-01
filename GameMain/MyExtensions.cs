@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace GameMain
 {
@@ -206,12 +207,17 @@ namespace GameMain
             return (T)Enum.ToObject(typeof(T), value);
         }
 
-        //public static List<TEntity> MapTo<TEntity>(this IEnumerable<DTO> items)
-        //    where TEntity : class, new()
-        //{
-        //    return Mapper.Map<List<TEntity>>(items);
-        //}
-
+        /// <summary>
+        /// 字符中汉字数量
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static int CNCharCount(this string str)
+        {
+            var mc = Regex.Matches(str, "[\u4e00-\u9fa5]");
+            int count = mc.Count;//汉字个数
+            return count;
+        }
 
         /// <summary>
         /// 首字母小写

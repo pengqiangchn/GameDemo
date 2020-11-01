@@ -8,7 +8,20 @@ namespace GameMain
 {
     public class CharacterFactory
     {
-        public Character CreatCharacter(int flag)
+        public Func<string, int> GetCommand;
+
+        public CharacterFactory(Func<string, int> getCommand)
+        {
+            GetCommand = getCommand;
+        }
+
+        public void ChooseCharacter(Character character)
+        {
+            int flag = GetCommand("请选择职业：\n1.战士\t2.法师\t3.妖怪");
+            character.GetRole(ChooseCharacter(flag));
+        }
+
+        private Character ChooseCharacter(int flag)
         {
             switch (flag)
             {
@@ -19,7 +32,8 @@ namespace GameMain
                 case 3:
                     return new Monster();
                 default:
-                    return null;
+                    int newFlag = GetCommand("选项有误，请重新选择职业：\n1.战士\t2.法师\t3.妖怪");
+                    return ChooseCharacter(newFlag);
             }
         }
     }

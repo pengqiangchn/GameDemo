@@ -12,6 +12,8 @@ namespace GameMain
 {
     public partial class GameMain : Form
     {
+        public static object Lock = new object();
+
         private GameEngine game;
         delegate void UpdateUIDelegate(Model model);
         UpdateUIDelegate dUpdateUI;
@@ -41,30 +43,35 @@ namespace GameMain
             }
             else
             {
-                var info = GetInfo(model);
-
-                txtGameInfo.Text += info.Item1;
-                txtGameInfo.SelectionStart = txtGameInfo.Text.Length;
-                txtGameInfo.ScrollToCaret();
-
-                txtUserInfo.Text = info.Item2;
-
-                txtCommand.Text = "";
-
-                txtCommand.Focus();
+                ShowInfo(model);
             }
         }
 
-        private Tuple<string, string> GetInfo(Model model)
+        private void ShowInfo(Model model)
         {
-            string gameInfo = "\r\n" + model.Msg + "\r\n";
+            lock (Lock)
+            {
+                if (model.GameMsg.IsNotEmpty())
+                {
+                    txtGame.Text += "\r\n" + model.GameMsg + "\r\n";
+                    txtGame.SelectionStart = txtGame.Text.Length;
+                    txtGame.ScrollToCaret();
+                }
 
-            string userInfo = @"asdad";
+                if (model.User.IsNotEmpty())
+                {
+                    txtUser.Text = model.User;
+                }
 
+                if (model.Fight != null)
+                {
+                    txtFightUser.Text = model.Fight.User;
+                    txtFightEnemy.Text = model.Fight.Enemy;
+                }
 
-            Tuple<string, string> info = new Tuple<string, string>(gameInfo, userInfo);
-
-            return info;
+                txtCommand.Text = "";
+                txtCommand.Focus();
+            }
         }
 
         private void txtCommand_KeyDown(object sender, KeyEventArgs e)
@@ -93,7 +100,7 @@ namespace GameMain
 
         private void btnClean_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            txtGameInfo.Text = "";
+            txtGame.Text = "";
         }
 
         private void GameMain_FormClosed(object sender, FormClosedEventArgs e)

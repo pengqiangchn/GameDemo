@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GameMain.Base
 {
-    public abstract class Qeuip
+    public abstract class Equip
     {
         protected int _price;
         protected int _def;

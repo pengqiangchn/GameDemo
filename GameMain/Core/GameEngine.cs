@@ -1,5 +1,6 @@
 ﻿using GameMain.Base;
 using GameMain.Enums;
+using GameMain.Qeuips.Weapons;
 using GameMain.Stores.Armors;
 using GameMain.Stores.Weapons;
 using System;
@@ -16,9 +17,9 @@ namespace GameMain
         private int GAME_PROCESS = 0;
         private GameSatausEnum GAME_STATUS = GameSatausEnum.Stop;
         private int GAME_SYSTEM_COMMAND = 1;
-        private int GAME_USER_COMMAND = 0;
+        private int GAME_USER_COMMAND = CONST.EMPTY_COMMAND;
 
-        private Model _model = new Model();
+        //private Model _model = null;
 
         private readonly Thread gameProcess;
         //private Thread userCommand;
@@ -29,20 +30,25 @@ namespace GameMain
         //public delegate void Command(int x);
         //private Command _command;
 
+        private Character _player;
+        private readonly CharacterFactory _characterFactory;
+        private readonly StoreManager _storeManager;
 
         public GameEngine(Progress progress)
         {
             _progress = progress;
+            _player = new Character();
+            _player.InfoChanged += new Character.InfoChangedEventHandler(progress);
+            _player.ShowInfo();
+
+            _characterFactory = new CharacterFactory(GetCommand); //角色产生工厂  
+            _storeManager = new StoreManager(GetCommand); //商店产生工厂（决定产生哪种职业的武器和盔甲） 
 
             gameProcess = new Thread(Game);
         }
 
-        Character player; //玩家一角色 
-
         private void Game()
         {
-            CharacterFactory characterFactory = new CharacterFactory(); //角色产生工厂  
-            StoreManager storeManager = new StoreManager(GetCommand); //商店产生工厂（决定产生哪种职业的武器和盔甲） 
 
             while (GAME_PROCESS == 1)
             {
@@ -63,29 +69,26 @@ namespace GameMain
                 if (GAME_SYSTEM_COMMAND == 1)
                 {
                     GAME_STATUS = GameSatausEnum.Start;
+                    _player.Fill(new Character());
                 }
 
                 //如果没有暂停就 一直运行
                 while (GAME_STATUS == GameSatausEnum.Start)
                 {
                     ShowMsg("游戏开始");
-                    GetCommand("请选择职业：\n1.战士\t2.法师\t3.妖怪");
-                    player = characterFactory.CreatCharacter(GAME_USER_COMMAND);
-                    storeManager.CreatStore(player);
+                    _characterFactory.ChooseCharacter(_player);
+                    _storeManager.CreatStore(_player);
 
                     //开始游戏，选择需要干啥
                     while (true)
                     {
                         Home();
                     }
-
-
                 }
 
                 if (GAME_STATUS == GameSatausEnum.Stop)
                 {
-                    _model.Msg = "Stop";
-                    _progress(_model);
+                    _progress(new Model("Stop"));
                 }
             }
         }
@@ -96,13 +99,14 @@ namespace GameMain
                           "***欢迎归来***\r\n" +
                           "*************\r\n";
             ShowMsg(home);
-            GetCommand("请选择操作：\n1.冒险\n2.商店\n");
+            GetCommand("请选择操作：\r\n1.冒险\r\n2.商店");
 
             switch (GAME_USER_COMMAND)
             {
                 case 1: //冒险
                     break;
                 case 2: //商店
+                    Shop();
                     break;
 
                 default:
@@ -112,33 +116,54 @@ namespace GameMain
 
         private void Shop()
         {
-            Qeuip qeuip = null;
-            GetCommand("需购买的装备：\n1.武器\n2.盔甲\n");
-            switch (GAME_USER_COMMAND)
+            GetCommand("需购买的装备：\r\n1.武器\r\n2.盔甲\r\n0.返回上一级");
+
+            Store(GAME_USER_COMMAND);
+
+            if (GAME_USER_COMMAND == 0)
+            {
+                Home();
+            }
+        }
+
+        private void Store(int storeFlag)
+        {
+            Equip equip = null;
+            switch (storeFlag)
             {
                 case 1: //武器
-                    qeuip = player.ArmorStore.Show();
+                    equip = _player.WeaponStore.Show();
                     break;
                 case 2: //盔甲
-                    qeuip = player.WeaponStore.Show();
+                    equip = _player.ArmorStore.Show();
                     break;
                 default:
                     GAME_USER_COMMAND = 0;
                     break;
             }
-            if (qeuip != null)
+
+            if (GAME_USER_COMMAND != 0)
             {
-                if (player.Money < qeuip.Price - player.Weapon.Price)
+                if (equip != null)
                 {
-                    GetCommand("你的金币不够，请重新选择或输入0返回上一级");
+                    if (_player.Money < equip.Price - _player.Weapon.Price)
+                    {
+                        ShowMsg("你的金币不够，请重新选择或输入0返回上一级!");
+                        Store(storeFlag);
+                    }
+                    else
+                    {
+                        ShowMsg("购买成功！");
+                        _player.GetEquip(equip);
+                    }
+                }
+                else
+                {
+                    ShowMsg("选择错误，请重新选择或输入0返回上一级!");
+                    Store(storeFlag);
                 }
             }
-
         }
-
-
-
-
 
         private int GetCommand(string msg)
         {
@@ -149,8 +174,7 @@ namespace GameMain
         {
             int command = 0;
 
-            _model.Msg = msg;
-            _progress(_model);
+            _progress(new Model(msg));
 
             if (isCallback)
             {
@@ -163,7 +187,7 @@ namespace GameMain
 
         private int UserCommand()
         {
-            GAME_USER_COMMAND = 0;
+            GAME_USER_COMMAND = CONST.EMPTY_COMMAND;
             Func<int> func = GetUserCommand;
             int command = func.Invoke();
             return command;
@@ -179,7 +203,8 @@ namespace GameMain
         /// </summary>
         private int GetUserCommand()
         {
-            while (GAME_USER_COMMAND == 0)
+            //等待接收
+            while (GAME_USER_COMMAND == CONST.EMPTY_COMMAND)
             {
             }
 
@@ -189,8 +214,7 @@ namespace GameMain
         public void SetCommand(int userCommand)
         {
             GAME_USER_COMMAND = userCommand;
-            _model.Msg = userCommand.ToString();
-            _progress(_model);
+            _progress(new Model(userCommand.ToString()));
         }
 
         public void StartGame()
@@ -206,7 +230,9 @@ namespace GameMain
 
         public void ResetGame()
         {
+            ShowMsg("重置游戏");
             GAME_SYSTEM_COMMAND = 1;
+            GAME_USER_COMMAND = 0;
             GAME_STATUS = GameSatausEnum.Stop;
         }
 

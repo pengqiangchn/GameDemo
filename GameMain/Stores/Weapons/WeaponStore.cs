@@ -10,10 +10,10 @@ namespace GameMain.Stores.Weapons
 
         public override Weapon Creat(int flag)
         {
-            if (WeaponList.Count > flag - 1)
+            if (flag > 0 && WeaponList.Count > flag - 1)
             {
 
-                return WeaponList[flag];
+                return WeaponList[flag-1];
             }
             else
             {
@@ -31,7 +31,7 @@ namespace GameMain.Stores.Weapons
                 msg += $"{i + 1}. {armor.FullName} {armor.Price}金币 +{armor.DEF}攻击力\r\n";
             }
 
-            int flag = getCommand(msg);
+            int flag = GetCommand(msg);
             return Creat(flag);
         }
 

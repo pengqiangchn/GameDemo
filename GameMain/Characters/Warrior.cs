@@ -8,6 +8,9 @@ namespace GameMain.Characters
     public class Warrior : Character
     {
         public Warrior(int health = 2000, int atk = 70, int def = 20, int money = 500, string name = "战士")
-            : base(health, atk, def, money, name) { }
+            : base(health, atk, def, money, name)
+        {
+            Role = Enums.CharacterRoleEnum.Warrior;
+        }
     }
 }

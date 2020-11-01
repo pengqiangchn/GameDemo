@@ -26,33 +26,51 @@ namespace GameMain
 
         public void CreatWeaponStore(Character character)
         {
-            if (character is Warrior)
+            switch (character.Role)
             {
-                character.WeaponStore = new WarriorWeaponStore(GetCommand);
-            }
-            else if (character is Wizard)
-            {
-                character.WeaponStore = new WarriorWeaponStore(GetCommand);
-            }
-            else if (character is Monster)
-            {
-                character.WeaponStore = new WarriorWeaponStore(GetCommand);
+                case Enums.CharacterRoleEnum.Warrior:
+                    {
+                        character.WeaponStore = new WarriorWeaponStore(GetCommand);
+                    }
+                    break;
+                case Enums.CharacterRoleEnum.Wizard:
+                    {
+                        character.WeaponStore = new WizardWeaponStore(GetCommand);
+                    }
+                    break;
+                case Enums.CharacterRoleEnum.Monster:
+                    {
+                        character.WeaponStore = new MonsterWeaponStore(GetCommand);
+                    }
+                    break;
+                case Enums.CharacterRoleEnum.None:
+                default:
+                    break;
             }
         }
 
         public void CreatArmorStore(Character character)
         {
-            if (character is Warrior)
+            switch (character.Role)
             {
-                character.ArmorStore = new WarriorArmorStore(GetCommand);
-            }
-            else if (character is Wizard)
-            {
-                character.ArmorStore = new WizardArmorStore(GetCommand);
-            }
-            else if (character is Monster)
-            {
-                character.ArmorStore = new MonsterArmorStore(GetCommand);
+                case Enums.CharacterRoleEnum.Warrior:
+                    {
+                        character.ArmorStore = new WarriorArmorStore(GetCommand);
+                    }
+                    break;
+                case Enums.CharacterRoleEnum.Wizard:
+                    {
+                        character.ArmorStore = new WizardArmorStore(GetCommand);
+                    }
+                    break;
+                case Enums.CharacterRoleEnum.Monster:
+                    {
+                        character.ArmorStore = new MonsterArmorStore(GetCommand);
+                    }
+                    break;
+                case Enums.CharacterRoleEnum.None:
+                default:
+                    break;
             }
         }
     }

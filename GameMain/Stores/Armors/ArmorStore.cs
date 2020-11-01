@@ -12,10 +12,10 @@ namespace GameMain.Stores.Armors
 
         public override Armor Creat(int flag)
         {
-            if (ArmorList.Count > flag - 1)
+            if (flag > 0 && ArmorList.Count > flag - 1)
             {
 
-                return ArmorList[flag];
+                return ArmorList[flag - 1];
             }
             else
             {
@@ -25,7 +25,7 @@ namespace GameMain.Stores.Armors
 
         public override Armor Show()
         {
-            string msg = "";
+            string msg = "请选择需购买的武器:\r\n";
             for (int i = 0; i < ArmorList.Count; i++)
             {
                 var armor = ArmorList[i];
