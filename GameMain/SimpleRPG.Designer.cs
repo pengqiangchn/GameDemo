@@ -15,8 +15,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbUserInfo = new System.Windows.Forms.GroupBox();
             this.txtUser = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -46,20 +46,20 @@
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.tab3 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.gbEquipInfo = new System.Windows.Forms.GroupBox();
-            this.txtEquip = new System.Windows.Forms.RichTextBox();
             this.dgvMyEquips = new System.Windows.Forms.DataGridView();
             this.测试 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.linkEquips_All = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.linkLabel7 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.linkEquips_All = new System.Windows.Forms.LinkLabel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.gbEquipInfo = new System.Windows.Forms.GroupBox();
+            this.txtEquip = new System.Windows.Forms.RichTextBox();
             this.gbUserInfo.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbEnemy.SuspendLayout();
@@ -72,9 +72,9 @@
             this.bgPlay.SuspendLayout();
             this.tab3.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMyEquips)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.gbEquipInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMyEquips)).BeginInit();
             this.SuspendLayout();
             // 
             // gbUserInfo
@@ -84,7 +84,7 @@
             this.gbUserInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbUserInfo.Name = "gbUserInfo";
             this.gbUserInfo.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbUserInfo.Size = new System.Drawing.Size(236, 312);
+            this.gbUserInfo.Size = new System.Drawing.Size(236, 267);
             this.gbUserInfo.TabIndex = 0;
             this.gbUserInfo.TabStop = false;
             this.gbUserInfo.Text = "角色信息";
@@ -94,18 +94,18 @@
             this.txtUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtUser.Location = new System.Drawing.Point(3, 16);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(230, 294);
+            this.txtUser.Size = new System.Drawing.Size(230, 249);
             this.txtUser.TabIndex = 2;
             this.txtUser.Text = "";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtPet);
-            this.groupBox2.Location = new System.Drawing.Point(482, 323);
+            this.groupBox2.Location = new System.Drawing.Point(482, 277);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(239, 83);
+            this.groupBox2.Size = new System.Drawing.Size(239, 129);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "宠物信息";
@@ -115,7 +115,7 @@
             this.txtPet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPet.Location = new System.Drawing.Point(3, 16);
             this.txtPet.Name = "txtPet";
-            this.txtPet.Size = new System.Drawing.Size(233, 65);
+            this.txtPet.Size = new System.Drawing.Size(233, 111);
             this.txtPet.TabIndex = 2;
             this.txtPet.Text = "";
             // 
@@ -382,6 +382,62 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "装备";
             // 
+            // dgvMyEquips
+            // 
+            this.dgvMyEquips.AllowUserToAddRows = false;
+            this.dgvMyEquips.AllowUserToDeleteRows = false;
+            this.dgvMyEquips.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dgvMyEquips.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvMyEquips.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMyEquips.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvMyEquips.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMyEquips.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.测试,
+            this.Column3,
+            this.Column4});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMyEquips.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvMyEquips.Location = new System.Drawing.Point(6, 15);
+            this.dgvMyEquips.MultiSelect = false;
+            this.dgvMyEquips.Name = "dgvMyEquips";
+            this.dgvMyEquips.ReadOnly = true;
+            this.dgvMyEquips.RowHeadersVisible = false;
+            this.dgvMyEquips.RowTemplate.Height = 23;
+            this.dgvMyEquips.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMyEquips.Size = new System.Drawing.Size(458, 434);
+            this.dgvMyEquips.TabIndex = 0;
+            // 
+            // 测试
+            // 
+            this.测试.HeaderText = "Column1";
+            this.测试.Name = "测试";
+            this.测试.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Column3";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Column4";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.linkLabel7);
@@ -397,6 +453,66 @@
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "操作";
+            // 
+            // linkLabel7
+            // 
+            this.linkLabel7.AutoSize = true;
+            this.linkLabel7.Location = new System.Drawing.Point(52, 21);
+            this.linkLabel7.Name = "linkLabel7";
+            this.linkLabel7.Size = new System.Drawing.Size(29, 12);
+            this.linkLabel7.TabIndex = 6;
+            this.linkLabel7.TabStop = true;
+            this.linkLabel7.Text = "武器";
+            // 
+            // linkLabel6
+            // 
+            this.linkLabel6.AutoSize = true;
+            this.linkLabel6.Location = new System.Drawing.Point(122, 44);
+            this.linkLabel6.Name = "linkLabel6";
+            this.linkLabel6.Size = new System.Drawing.Size(29, 12);
+            this.linkLabel6.TabIndex = 5;
+            this.linkLabel6.TabStop = true;
+            this.linkLabel6.Text = "青铜";
+            // 
+            // linkLabel5
+            // 
+            this.linkLabel5.AutoSize = true;
+            this.linkLabel5.Location = new System.Drawing.Point(87, 44);
+            this.linkLabel5.Name = "linkLabel5";
+            this.linkLabel5.Size = new System.Drawing.Size(29, 12);
+            this.linkLabel5.TabIndex = 4;
+            this.linkLabel5.TabStop = true;
+            this.linkLabel5.Text = "青铜";
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Location = new System.Drawing.Point(52, 44);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(29, 12);
+            this.linkLabel4.TabIndex = 3;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "青铜";
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.Location = new System.Drawing.Point(7, 44);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(29, 12);
+            this.linkLabel3.TabIndex = 2;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "青铜";
+            // 
+            // linkEquips_All
+            // 
+            this.linkEquips_All.AutoSize = true;
+            this.linkEquips_All.Location = new System.Drawing.Point(7, 21);
+            this.linkEquips_All.Name = "linkEquips_All";
+            this.linkEquips_All.Size = new System.Drawing.Size(29, 12);
+            this.linkEquips_All.TabIndex = 1;
+            this.linkEquips_All.TabStop = true;
+            this.linkEquips_All.Text = "全部";
             // 
             // button2
             // 
@@ -428,122 +544,6 @@
             this.txtEquip.TabIndex = 2;
             this.txtEquip.Text = "";
             // 
-            // dgvMyEquips
-            // 
-            this.dgvMyEquips.AllowUserToAddRows = false;
-            this.dgvMyEquips.AllowUserToDeleteRows = false;
-            this.dgvMyEquips.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.dgvMyEquips.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvMyEquips.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMyEquips.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvMyEquips.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMyEquips.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.测试,
-            this.Column3,
-            this.Column4});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMyEquips.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvMyEquips.Location = new System.Drawing.Point(6, 15);
-            this.dgvMyEquips.MultiSelect = false;
-            this.dgvMyEquips.Name = "dgvMyEquips";
-            this.dgvMyEquips.ReadOnly = true;
-            this.dgvMyEquips.RowHeadersVisible = false;
-            this.dgvMyEquips.RowTemplate.Height = 23;
-            this.dgvMyEquips.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMyEquips.Size = new System.Drawing.Size(458, 434);
-            this.dgvMyEquips.TabIndex = 0;
-            // 
-            // 测试
-            // 
-            this.测试.HeaderText = "Column1";
-            this.测试.Name = "测试";
-            this.测试.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Column3";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Column4";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // linkEquips_All
-            // 
-            this.linkEquips_All.AutoSize = true;
-            this.linkEquips_All.Location = new System.Drawing.Point(7, 21);
-            this.linkEquips_All.Name = "linkEquips_All";
-            this.linkEquips_All.Size = new System.Drawing.Size(29, 12);
-            this.linkEquips_All.TabIndex = 1;
-            this.linkEquips_All.TabStop = true;
-            this.linkEquips_All.Text = "全部";
-            // 
-            // linkLabel3
-            // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(7, 44);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(29, 12);
-            this.linkLabel3.TabIndex = 2;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "青铜";
-            // 
-            // linkLabel4
-            // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(52, 44);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(29, 12);
-            this.linkLabel4.TabIndex = 3;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "青铜";
-            // 
-            // linkLabel5
-            // 
-            this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Location = new System.Drawing.Point(87, 44);
-            this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(29, 12);
-            this.linkLabel5.TabIndex = 4;
-            this.linkLabel5.TabStop = true;
-            this.linkLabel5.Text = "青铜";
-            // 
-            // linkLabel6
-            // 
-            this.linkLabel6.AutoSize = true;
-            this.linkLabel6.Location = new System.Drawing.Point(122, 44);
-            this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(29, 12);
-            this.linkLabel6.TabIndex = 5;
-            this.linkLabel6.TabStop = true;
-            this.linkLabel6.Text = "青铜";
-            // 
-            // linkLabel7
-            // 
-            this.linkLabel7.AutoSize = true;
-            this.linkLabel7.Location = new System.Drawing.Point(52, 21);
-            this.linkLabel7.Name = "linkLabel7";
-            this.linkLabel7.Size = new System.Drawing.Size(29, 12);
-            this.linkLabel7.TabIndex = 6;
-            this.linkLabel7.TabStop = true;
-            this.linkLabel7.Text = "武器";
-            // 
             // SimpleRPG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -572,10 +572,10 @@
             this.bgPlay.ResumeLayout(false);
             this.tab3.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMyEquips)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.gbEquipInfo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMyEquips)).EndInit();
             this.ResumeLayout(false);
 
         }
